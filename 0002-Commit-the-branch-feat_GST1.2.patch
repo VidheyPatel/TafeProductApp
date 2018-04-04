@@ -1,0 +1,90 @@
+From cf19f0e5187137ae3801f5ddcf38b2e63ac6b5fd Mon Sep 17 00:00:00 2001
+From: Vidhey Patel <vidheypatel71@gmail.com>
+Date: Wed, 4 Apr 2018 18:01:12 +0930
+Subject: [PATCH 2/2] Commit the branch feat_GST1.2
+
+---
+ ProductMaintenance/ProductApps/MainWindow.xaml    |  6 ++++--
+ ProductMaintenance/ProductApps/MainWindow.xaml.cs |  2 ++
+ ProductMaintenance/ProductApps/Product.cs         | 14 +++++++++++---
+ 3 files changed, 17 insertions(+), 5 deletions(-)
+
+diff --git a/ProductMaintenance/ProductApps/MainWindow.xaml b/ProductMaintenance/ProductApps/MainWindow.xaml
+index c2d6e98..bb970ee 100644
+--- a/ProductMaintenance/ProductApps/MainWindow.xaml
++++ b/ProductMaintenance/ProductApps/MainWindow.xaml
+@@ -16,8 +16,10 @@
+         <Button Name="closeButton" Content="Cl_ose" HorizontalAlignment="Left" Height="34" Margin="327,264,0,0" VerticalAlignment="Top" Width="122" Click="closeButton_Click"/>
+         <Label x:Name="label" Content="Total Charge after adding &#xA; the delivery charge($25)" HorizontalAlignment="Left" Margin="46,190,0,0" VerticalAlignment="Top" Width="143" Height="42"/>
+         <TextBlock x:Name="totalChargeTextblock" HorizontalAlignment="Left" Margin="218,190,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="25" Width="70"/>
+-        <Label x:Name="label1" Content="Total Charge after adding &#xA; the wrap charge" HorizontalAlignment="Left" Margin="48,243,0,0" VerticalAlignment="Top" Height="39" Width="151"/>
+-        <TextBlock x:Name="wrapTextblock" HorizontalAlignment="Left" Margin="218,251,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="53"/>
++        <Label x:Name="label1" Content="Total Charge after adding &#xA; the wrap charge" HorizontalAlignment="Left" Margin="48,225,0,0" VerticalAlignment="Top" Height="39" Width="151"/>
++        <TextBlock x:Name="wrapTextblock" HorizontalAlignment="Left" Margin="218,225,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="53"/>
++        <Label x:Name="label2" Content="Total Charge After GST @10%" HorizontalAlignment="Left" Margin="48,264,0,0" VerticalAlignment="Top"/>
++        <TextBlock x:Name="GSTTextBlock" HorizontalAlignment="Left" Margin="222,269,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+ 
+ 
+     </Grid>
+diff --git a/ProductMaintenance/ProductApps/MainWindow.xaml.cs b/ProductMaintenance/ProductApps/MainWindow.xaml.cs
+index 2c44054..503d4cd 100644
+--- a/ProductMaintenance/ProductApps/MainWindow.xaml.cs
++++ b/ProductMaintenance/ProductApps/MainWindow.xaml.cs
+@@ -37,6 +37,7 @@ namespace ProductApps
+                 cProduct.calTotalCharge();
+                 totalChargeTextblock.Text = Convert.ToString(cProduct.Totalcharge);
+                 wrapTextblock.Text = Convert.ToString(cProduct.WrapCharge);
++                GSTTextBlock.Text = Convert.ToString(cProduct.GSTCharge);
+             }
+             catch (FormatException)
+             {
+@@ -52,6 +53,7 @@ namespace ProductApps
+             totalPaymentTextBlock.Text = "";
+             totalChargeTextblock.Text = "";
+             wrapTextblock.Text = "";
++            GSTTextBlock.Text = "";
+         }
+ 
+         private void closeButton_Click(object sender, RoutedEventArgs e)
+diff --git a/ProductMaintenance/ProductApps/Product.cs b/ProductMaintenance/ProductApps/Product.cs
+index 853ae03..21f5700 100644
+--- a/ProductMaintenance/ProductApps/Product.cs
++++ b/ProductMaintenance/ProductApps/Product.cs
+@@ -16,6 +16,7 @@ namespace ProductApps
+         private decimal gst;
+         private decimal totalcharge;
+         private decimal wrapcharge;
++        private decimal GSTcharge;
+ 
+         private decimal Price
+         {
+@@ -44,7 +45,13 @@ namespace ProductApps
+         public decimal WrapCharge
+         {
+             get { return wrapcharge; }
+-            set { totalcharge = value; }
++            set { wrapcharge = value; }
++        }
++
++        public decimal GSTCharge
++        {
++            get { return GSTcharge; }
++            set { GSTcharge = value; }
+         }
+ 
+ 
+@@ -82,8 +89,9 @@ namespace ProductApps
+ 
+         public void calTotalCharge()
+         {
+-            totalcharge = TotalPayment + 25;
+-            wrapcharge = TotalPayment + 25 + 5;
++            totalcharge = TotalPayment + 25.00m;
++            wrapcharge = TotalPayment + 25.00m + 5.00m;
++            GSTcharge = (TotalPayment + 25.00m + 5.00m) * 1.1m;
+         }
+     }
+ }
+-- 
+2.11.0.windows.1
+
