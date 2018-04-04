@@ -16,6 +16,7 @@ namespace ProductApps
         private decimal gst;
         private decimal totalcharge;
         private decimal wrapcharge;
+        private decimal GSTcharge;
 
         private decimal Price
         {
@@ -44,7 +45,13 @@ namespace ProductApps
         public decimal WrapCharge
         {
             get { return wrapcharge; }
-            set { totalcharge = value; }
+            set { wrapcharge = value; }
+        }
+
+        public decimal GSTCharge
+        {
+            get { return GSTcharge; }
+            set { GSTcharge = value; }
         }
 
 
@@ -82,8 +89,9 @@ namespace ProductApps
 
         public void calTotalCharge()
         {
-            totalcharge = TotalPayment + 25;
-            wrapcharge = TotalPayment + 25 + 5;
+            totalcharge = TotalPayment + 25.00m;
+            wrapcharge = TotalPayment + 25.00m + 5.00m;
+            GSTcharge = (TotalPayment + 25.00m + 5.00m) * 1.1m;
         }
     }
 }

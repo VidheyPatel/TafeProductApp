@@ -16,8 +16,10 @@
         <Button Name="closeButton" Content="Cl_ose" HorizontalAlignment="Left" Height="34" Margin="327,264,0,0" VerticalAlignment="Top" Width="122" Click="closeButton_Click"/>
         <Label x:Name="label" Content="Total Charge after adding &#xA; the delivery charge($25)" HorizontalAlignment="Left" Margin="46,190,0,0" VerticalAlignment="Top" Width="143" Height="42"/>
         <TextBlock x:Name="totalChargeTextblock" HorizontalAlignment="Left" Margin="218,190,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="25" Width="70"/>
-        <Label x:Name="label1" Content="Total Charge after adding &#xA; the wrap charge" HorizontalAlignment="Left" Margin="48,243,0,0" VerticalAlignment="Top" Height="39" Width="151"/>
-        <TextBlock x:Name="wrapTextblock" HorizontalAlignment="Left" Margin="218,251,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="53"/>
+        <Label x:Name="label1" Content="Total Charge after adding &#xA; the wrap charge" HorizontalAlignment="Left" Margin="48,225,0,0" VerticalAlignment="Top" Height="39" Width="151"/>
+        <TextBlock x:Name="wrapTextblock" HorizontalAlignment="Left" Margin="218,225,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="53"/>
+        <Label x:Name="label2" Content="Total Charge After GST @10%" HorizontalAlignment="Left" Margin="48,264,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="GSTTextBlock" HorizontalAlignment="Left" Margin="222,269,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
 
 
     </Grid>
